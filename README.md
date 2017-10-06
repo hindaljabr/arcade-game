@@ -13,3 +13,11 @@ The player can move left, right, up and down.
 The enemies move in varying speeds on the paved block portion of the scene.
 Once a the player collides with an enemy, the game is reset and the player moves back to the start square.
 Once the player reaches the water the game is won!
+
+#To Start Playing
+
+- Load index.html in your favorite browser
+- To move the player, click the arrows on your keyboard.
+- To win; don't clash with the bugs! RUN! otherwise, you lose.
+
+Have fun!
