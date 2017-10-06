@@ -49,6 +49,43 @@ var allEnemies = [enemy1, enemy2, enemy3];
 // Place the player object in a variable called player
 var player = new Player();
 
+
+// This class requires an update(), render() and
+// a handleInput() method.
+Player.prototype.update = function() {
+    this.checkClashing();
+    this.checkWinner();
+    this.checkBorder();
+
+    if (this.game == true) {
+        this.checkGameOver();
+    }
+    if (this.y <= 5) {
+        this.reset();
+        this.score()
+    }
+};
+
+Player.prototype.handleInput = function(action_p) {
+    if (action_p == 'left') {
+        this.x -= this.speed;
+    }
+    if (action_p == 'right') {
+        this.x += this.speed;
+    }
+
+    if (action_p == 'up') {
+        this.y -= this.speed;
+    }
+    if (action_p == 'down') {
+        this.y += this.speed;
+    }
+};
+
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
 // Default player position
 Player.prototype.reset = function() {
     this.x = 200;
@@ -113,42 +150,6 @@ Player.prototype.checkGameOver = function() {
         this.gameReset();
     }
 }
-
-// This class requires an update(), render() and
-// a handleInput() method.
-Player.prototype.update = function() {
-    this.checkClashing();
-    this.checkBorder();
-    this.checkWinner();
-
-    if (this.game == true) {
-        this.checkGameOver();
-    }
-    if (this.y <= 5) {
-        this.reset();
-        this.score()
-    }
-};
-
-Player.prototype.handleInput = function(action_p) {
-    if (action_p == 'left') {
-        this.x -= this.speed;
-    }
-    if (action_p == 'right') {
-        this.x += this.speed;
-    }
-
-    if (action_p == 'up') {
-        this.y -= this.speed;
-    }
-    if (action_p == 'down') {
-        this.y += this.speed;
-    }
-};
-
-Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
